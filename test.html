@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>⚙️ MADE BY Levi 🥶</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: transparent; /* Latar belakang hitam */
+            color: #ffff00; /* Warna teks deskripsi biru */
+            font-family: Monaco, monospace;
+            overflow-y: auto; /* Mengaktifkan scrolling */
+            height: 100vh; /* Mengatur tinggi body */
+            display: flex;
+            flex-direction: column;
+            background-image: url('https://i.ibb.co/FW2sG7T/ph9bwcw2a4.jpg'); /* Ganti dengan URL gambar default Anda */
+            background-size: cover; /* Mengisi seluruh layar dengan gambar */
+            background-position: center; /* Mengatur posisi gambar di tengah */
+            transition: background-color 0.5s; /* Transisi background */
+        }
+        .container {
+            flex: 1; /* Mengisi ruang yang tersedia */
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(31, 31, 31, 0.7); /* Warna latar belakang transparan untuk kontainer */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            margin-bottom: 20px;
+            overflow: auto; /* Mengaktifkan scrolling di dalam kontainer */
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transisi efek menu */
+        }
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .calculator {
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #444; /* Warna latar belakang input */
+            color: white; /* Warna teks input */
+        }
+        button {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: white; /* Warna tombol putih */
+            color: red; /* Warna teks tombol merah */
+            cursor: pointer;
+            font-weight: bold; /* Menebalkan teks tombol */
+            transition: transform 0.2s; /* Animasi transform */
+        }
+        button:active {
+            transform: scale(0.95); /* Efek penekanan */
+        }
+        button:hover {
+            background-color: #ddd; /* Warna tombol saat hover */
+        }
+        .hidden {
+            display: none;
+        }
+        .input, button {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .menu-button:hover {
+            background-color: yellow;
+        }
+        .ip-info {
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        .input {
+            width: 300px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        #colorfulDiv {
+            padding: 20px;
+            border: 5px solid black;
+            margin-bottom: 20px;
+            transition: border-color 1s;
+        }
+        #gameContainer {
+            display: center;
+            text-align: center;
+        }
+        .flag-image {
+            width: 200px; /* Atur lebar gambar */
+            height: auto; /* Tinggi otomatis untuk menjaga proporsi */
+            margin: 20px auto; /* Pusatkan gambar */
+        }
+        #gameCanvas {
+            border: 2px solid #fff;
+            background-color: #000;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        #score {
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .control-button {
+            background-color: white;
+            border: 1px solid blue;
+            color: red;
+            font-size: 24px;
+            padding: 15px;
+            margin: 10px;
+            cursor: center;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .control-button:hover {
+            background-color: #666;
+        }
+
+        .control-button:active {
+            background-color: #888;
+        }
+
+        .up-button {
+            margin-bottom: 10px;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ccc;
+            margin-top: 20px;
+        }
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Agar video di belakang konten */
+            transform: translate(-50%, -50%);
+        }
+
+        .content {
+            position: relative;
+            z-index: 1; /* Agar konten di depan video */
+            color: white; /* Warna teks */
+            text-align: center; /* Pusatkan teks */
+            padding: 20px; /* Padding untuk teks */
+        }
+        
+        header {
+            background: rgba(0, 0, 128, 0.9);
+            padding: 20px;
+            text-align: center;
+            font-size: 2.5em;
+            color: #fff;
+            position: relative;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+        }
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        .menu-icon:hover {
+            transform: rotate(90deg);
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: rgba(0, 0, 128, 0.9);
+            border-radius: 5px;
+            z-index: 1;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .dropdown a {
+            color: white;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+        .dropdown a:hover {
+            background-color: rgba(0, 0, 128, 0.7);
+            transform: scale(1.05);
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .product-card {
+            background: rgba(0, 0, 128, 0.8);
+            border-radius: 10px;
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .product-card img:hover {
+            transform: scale(1.1);
+        }
+        .product-card h3 {
+            margin: 15px 0;
+        }
+        .product-card p {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1.5em;
+            color: #00bfff;
+            margin-bottom: 10px;
+        }
+        .buy-btn {
+            background-color: #00bfff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+        .buy-btn:hover {
+            background-color: #0099cc;
+            transform: scale(1.1);
+        }
+        footer {
+            background: rgba(0, 0, 128, 0.8);
+            padding: 20px;
+            text-align: center;
+            font-size: 1em;
+            color: #fff;
+            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+  <video autoplay muted loop class="video-background">
+        <source src="https://pomf2.lain.la/f/x4piwqwe.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <audio controls autoplay loop>
+        <source src="https://files.catbox.moe/n7gzur.mp3" type="audio/mpeg"> <!-- Ganti dengan URL audio -->
+        Your browser does not support the audio tag.
+    </audio>
+    
+<div class="container" id="login-container">
+    <h2>⚙️ MADE BY Levi 🧊</h2>
+    <p class="description">©By Levi <br> ©Project Levi <br> ©tujuan Levi <br> Tempat Sc Bot <br> ©Thanks For All <br> ®And Enjoy You Use This Link / Website 🗿 <br><br> Note:onwer Link Hanya Share Sc - Apk - Dll Jika Ada PW/Key Pasti Kami Kash Tau Di Setiap Button / Menu <br><br><br> Mati aja Elu Ngambil² Code Dan Gk Bisa buat <br> Serta Berkreatif 😂😂😂😹😹😹</p>
+    <input type="text" id="username" placeholder="⚙️ 𝐔𝐒𝐄𝐑 :" required>
+    <input type="password" id="password" placeholder="⚙️𝐏𝐖 :" required>
+    <button onclick="login()">⚙️ masuk ⚙️</button>
+    
+    <h3>Menu Gambar</h3>
+    <button onclick="changeRandomBackgroundImage()">Ganti Gambar [Versi Acak]</button>
+    <p id="image-info" style="color: #0f0600;"></p> <!-- Teks untuk menampilkan gambar info -->
+    
+    <p id="error-message" class="hidden" style="color: red;"></p>
+</div>
+<div class="container hidden" id="menu">
+    <h3>⚙️ Tempat Download Dan Store</h3>
+    <button onclick="showExample1()">⚙️ DOWLOAD SC BOT ⚙️</button>
+    <button onclick="showExample2()">⚙️ DOWNLOAD APK ⚙️</button>
+    <button onclick="showExample3()">⚙️ STORE (BELUM SEPENUH JADI) ⚙️</button>
+    <button onclick="showExample4()">⚙️ MENU CAMPURAN ⚙️</button>
+    <button onclick="showExample5()">⚙️ MENU GANTI GAMBAR ⚙️</button>
+    <button onclick="showExample6()">⚙️ MENU KALKULATOR ⚙️</button>
+    <button onclick="showExample7()">⚙️ MENU GET MY IP ⚙️</button>
+    <button onclick="showExample8()">⚙️ MENU TRACK IP ⚙️</button>
+    <button onclick="showExample9()">⚙️ MENU OPEN WEBSITE ⚙️</button>
+    <button onclick="showExample10()">⚙️ MENU ANIMASI ⚙️</button>
+    <button onclick="showExample11()">⚙️ MENU GAME ⚙️</button>
+    <button onclick="showExample12()">⚙️ MENU CEK WEB (EROR)⚙️</button>
+    <button onclick="showSettings()">🧊 PENGATURAN 🧊</button>
+    <button onclick="showLogin()">⚙️ Logout ⚙️</button>
+    <div id="datetime" style="margin-top: 20px;"></div>
+</div>
+
+<div class="container hidden" id="settings-container">
+    <h3>⚙️⚙️⚙️⚙️</h3>
+    
+    <h4>Ganti Warna Latar Belakang</h4>
+    <button onclick="changeBackgroundColor('black')">Hitam</button>
+    <button onclick="changeBackgroundColor('blue')">Biru</button>
+    <button onclick="changeBackgroundColor('green')">Hijau</button>
+    <button onclick="changeBackgroundColor('red')">Merah</button>
+    <button onclick="changeBackgroundColor('purple')">Ungu</button>
+    <button onclick="changeBackgroundColor('orange')">Oranye</button>
+    <button onclick="changeBackgroundColor('pink')">Rosa</button>
+    <button onclick="changeBackgroundColor('gray')">Abu-abu</button>
+    <button onclick="changeBackgroundColor('navy')">Navy</button>
+    <button onclick="changeBackgroundColor('lime')">Lime</button>
+
+    <h4>Ganti Warna Teks</h4>
+    <button onclick="changeTextColor('white')">Putih</button>
+    <button onclick="changeTextColor('black')">Hitam</button>
+    <button onclick="changeTextColor('yellow')">Kuning</button>
+    <button onclick="changeTextColor('cyan')">Sian</button>
+    <button onclick="changeTextColor('magenta')">Magenta</button>
+    <button onclick="changeTextColor('orange')">Oranye</button>
+    <button onclick="changeTextColor('green')">Hijau</button>
+    <button onclick="changeTextColor('red')">Merah</button>
+    <button onclick="changeTextColor('blue')">Biru</button>
+    <button onclick="changeTextColor('gray')">Abu-abu</button>
+
+    <h4>Ganti Font</h4>
+    <button onclick="changeFont('Arial')">Arial</button>
+    <button onclick="changeFont('Courier New')">Courier New</button>
+    <button onclick="changeFont('Georgia')">Georgia</button>
+    <button onclick="changeFont('Impact')">Impact</button>
+    <button onclick="changeFont('Times New Roman')">Times New Roman</button>
+    <button onclick="changeFont('Verdana')">Verdana</button>
+    <button onclick="changeFont('Trebuchet MS')">Trebuchet MS</button>
+    <button onclick="changeFont('Lucida Console')">Lucida Console</button>
+    <button onclick="changeFont('Comic Sans MS')">Comic Sans MS</button>
+    <button onclick="changeFont('Tahoma')">Tahoma</button>
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 1 -->
+<div class="container hidden" id="example1-container">
+    <h3>Tempat Download Sc bot<h3>
+      <p class="description"> Owner Hanya Membagikan Sc² Saja<br> Ingat Ya Hanya Membagikan Sc <br> Gk Semua Sc Admin Bagikan Ya ⚙️</p>
+      <br>
+      <p class="description"> Link² Sc Ada Di Bawah Cari aja ya</p>
+      <br>
+      <p class="description"> Geli Ama Tukang Maling Code Yg Gk Bisa Buat <br> Dan Berkreativ Padahal Dia <br> Punya Akal 😹😂😹😂😹😂😹 <br> Cil² 😹😂😹😂😹
+      <br>
+      <br>
+              
+        <button onclick="openLink('https://www.mediafire.com/file/xxqokv4vd25tslh/SC_TOP_UP.zip/file')">Sc Top Up Otomatis</button>
+        <p class="description">halo.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/a9qqeykzxmsdn8i/Higani_V2.0.0b.zip/file')">Sc Hagani MD</button>
+        <p class="description">Sc Bot.</p>
+        
+        <button onclick="openLink('https://tweaksocial.com')">Web Suntik</button>
+        <p class="description">Katanya Sih .</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/2hb4t8g2lx1sjac/NO_SCAN_FIX_BY__YUSUF_BOTZ.zip/file')">Sc Pushkontak</button>
+        <p class="description">by Yusuf.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/w6qfobldwtmovcs/cekproxyV2.zip/file')">Sc Cek Proxy</button>
+        <p class="description">Katanya Sih ini.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/sylyagfrp86ei64/ToolsVVip(free+version+no+key)by+BagazzModz.zip/file')">Sc Tools VIp</button>
+        <p class="description">katanya Vip + No Key.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/osw4klkwaaqzlji/MichieAI+v1.0.zip/file')">Sc Michei AI</button>
+        <p class="description">Sc V1.0.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/o8rnbfksfujn9z6/Experimental-Bell-master.zip/file')">sc auto ai</button>
+        <p class="description">gk tahu sc apa.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/xchlzlea9bk7an3/Spider-v700-main_%25284%2529.zip/file')">sc spider v700</button>
+        <p class="description">gk tau sc spider yg mana.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/nc7gepaixxcnua9/Ganyu+AI.zip/file')">sc ganyu ai</button>
+        <p class="description">sc bot.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/midtqt9ptjp6h7g/SC%252BHWDEPOSIT.zip/file')">sc campuran</button>
+        <p class="description">sc bot.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/z3z6j3upu7h9u12/SCRIPT_BASE_KTZ-KZY_FIXED.zip/file')">sc ktz-kzy</button>
+        <p class="description">sc bot.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/mq0tqq1p1gtq61y/')">Sc Bot Zynxzoo</button>
+        <p class="description">V12 Ini.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/fldbthlp55arn3z/Spider_v8_Crcked_By_Caywzz_ciudad_de_jomokerto.zip/file')">Sc Spider V8</button>
+        <p class="description">Sc Bug.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/jhwijirscy5v3ur/Devil_V7_Delete_Dtbs_By_Caywzz_compartido_por_PAEDULZ.zip/file')">Sc Devil 7</button>
+        <p class="description">SC bug.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/4qjnj5gwcbx1jcr/ddosFIP.zip/file')">Sc Ddos</button>
+        <p class="description">Use : node ddos.js <url> <time>`.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/tltdvfe59u769ed/.zip/file')">Rayhanz V1 </button>
+        <p class="description">Sc bug keknya.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/tlz26ejj3368lpq/🎭+WynzXF+-Detech+Enc+Gen+3🎭.zip/file)">Sc WynzXF V3</button>
+        <p class="description">Sc Bug Keknya Ini Di Enc.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/bp7rtjkt9m3bnh5/AqiooV18+cracked+by+HinXZy.7z/file')">Sc Qip V18</button>
+        <p class="description">Katanya Ini Ori + Crack :: PW = meqiboyy.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/q9q05pork6ps7x8/SPAM_UNLIMITED_CINGZ.zip/file')">Sc Spam Unlimited</button>
+        <p class="description">Gk tahu Spam apa.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/vk5noamhe6ggxo4/𝐑𝟒+𝐌𝐎𝐃𝐒.zip/file')">Sc R4-MODS</button>
+        <p class="description">gk tahu Sc apa.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/f7n8iu73a7d4qcu/⭑̤⟅_༑_▾_𝐀͑𝐈̶͢𝐍𝐘𝐙͆𝐍͢𝐗_▾_༑̴⟆_⭑̤_1.zip/file')">Ac NY2NX</button>
+        <p class="description">gk tau sc apa.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/0a7auttgsv8hq1n/SC+TOP+UP+-+ATLANTIC+PEDIA+--+NO+ENC.zip/file')">Sc Top up</button>
+        <p class="description">by Atlantic Pedia.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/57tedgijab6370d/Script_Bug_Private_New_%2523Share_By_FluXz.zip/file')">Sc Bug Private</button>
+        <p class="description">Sc Bug.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/j7p368l6x40wfxe/HILLARY%20V1.6%20AKSES%20AWAL.zip/file')">Sc Hillary</button>
+        <p class="description">Pw nya : 992677</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/8ozq13ywly4gek5/SC+STORE+JAGA+GRUP+DEFZZ.zip/file')">Sc Jaga Grup</button>
+        <p class="description">Sc bot.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/essofpowftamc5n/harleyXsc.zip/file')">Sc Cpanel - Button - JPM Slide</button>
+        <p class="description">Sc Bot.</p>
+                
+         <button onclick="openLink('https://www.mediafire.com/file/ym2h5ccwuzx7fhr/SC_PUSHKONTAK_THOMZ_V4.zip/file')">Sc Push</button>
+        <p class="description">Katanya Ini Anti Kenon.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/cxc3l88trzjk9zo/B%25D2%2589A%25D2%2589R%25D2%2589A%25D2%25899%25D2%25899%25D2%25899%25D2%2589_V%25D2%25895%25D2%2589.%25D2%25890%25D2%2589%2528Enc%2529_ciudad_de_jomokerto.zip/file')">Sc Bara 999</button>
+        <p class="description">Sc Ini Di Enc.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/knj3ai2io6szr08/Midoriya+MD.zip/file')">sc MD</button>
+        <p class="description">Sc Midoriya.</p>
+                 
+        <button onclick="openLink('https://www.mediafire.com/file/37kk0uoem40zqyn/Yae+Miko.zip/file')">Sc Yaemiko</button>
+        <p class="description">Sc bot.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/nczi1vkgwbwclx5/PutraXploit+Available+V3⚡⚡.zip/file')">Sc Putra Xploit V3</button>
+        <p class="description">Sc Bot.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/57tedgijab6370d/Script_Bug_Private_New_%2523Share_By_FluXz.zip/file')">Sc FluxXz</button>
+        <p class="description">gk tau Sc apa.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/51kpkj5s3jrk8z9/nanov15.zip/file')">Cs Nano</button>
+        <p class="description">V15.</p>
+                
+        <button onclick="openLink('https://5sim.net')">Web Nokos 1</button>
+        <p class="description">Web Nokos Bayar + Murah</p>
+                
+        <button onclick="openLink('https://jasaotp.net')">Jasa OTP</button>
+        <p class="description">Bayar + Murah.</p>
+                
+        <button onclick="openLink('https://otpku.id')">otpku id</button>
+        <p class="description">Web Bayar + Murah.</p>
+                
+        <button onclick="openLink('https://mobilesms.io/free-sms-verification')">Web Nokos</button>
+        <p class="description">Free katanya.</p>
+        
+        <button onclick="openLink('https://sms24.me/en')">Web Nokos</button>
+        <p class="description">Free.</p>
+        
+        <button onclick="openLink('https://receive-sms-online.info')">Web Nokos</button>
+        <p class="description">Free Katanya.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/svrgys36krsvez5/PermenMisc_V6.zip/file')">Permen Misc</button>
+        <p class="description">Ini V6.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/vk5noamhe6ggxo4/𝐑𝟒+𝐌𝐎𝐃𝐒.zip/file')">Sc R4 Mods</button>
+        <p class="description">gk tau sc apa.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/w0ype2ildtcae6a/CPANEL+MAHIRU+BY+SHYODES+(1).zip/file')">Cpanel</button>
+        <p class="description">by Mahiru.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/t4ee2wttpog9rpu/%25F0%259D%2599%25B4%25F0%259D%2599%25BD%25F0%259D%2599%25B2-%25F0%259D%2599%25B1%25F0%259D%2599%25B0%25F0%259D%259A%2581%25F0%259D%2599%25BF%25F0%259D%259A%2581%25F0%259D%2599%25B8%25F0%259D%2599%25B1%25F0%259D%2599%25B0%25F0%259D%2599%25B3%25F0%259D%2599%25B8-%25F0%259D%259A%2584%25F0%259D%2599%25BF%25F0%259D%2599%25B3%25F0%259D%2599%25B0%25F0%259D%259A%2583%25F0%259D%2599%25B4%25F0%259D%259A%2585%25F0%259D%259F%25B8.%25F0%259D%259F%25BB.zip/file')">Sc Bar Mods</button>
+        <p class="description">ini Sc V2. 5.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/tvegmqslnfz339p/Script_Menu_Bug_Geser_%2540Fallz444Official.zip/file')">Sc Bug</button>
+        <p class="description">menu nya Menu Geser
+        
+        <button onclick="openLink('https://www.mediafire.com/file/hjoxw0kcnadhbuy/ELAINA-AI_BUTTON_FIX_V5.8.zip/file')">Sc Elaina</button>
+        <p class="description">Ini V5. 8.</p>
+                
+        <button onclick="openLink('https://obfuscate.surge.sh')">Web Enc Sc</button>
+        <p class="description">obfuscate.</p>
+        
+      <button onclick="openLink('https://www.mediafire.com/file/ym2h5ccwuzx7fhr/SC_PUSHKONTAK_THOMZ_V4.zip/file')">Sc Push</button>
+        <p class="description">Katanya Ini Anti Kenon.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/edijs2ba21v7dhi/AkiraaBot+gen-2.zip/file')">Sc Akira</button>
+        <p class="description">V Gen 2.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/yvafrn9z3susowa/DELTACRASH+V2.zip/file')">Delta</button>
+        <p class="description">ini V2.</p>
+        
+    <button onclick="openLink('https://www.mediafire.com/file/peysdbd1g7iju95/Manajer_MT_%25C2%25A9_Xyroo.7z/file')">mt meneger pro</button>
+        <p class="description">Pw : SAPI TERBANG</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/d4z26ylq92g76wp/Zynxzoovvip_V12.zip/file')">Zynxzoovip</button>
+        <p class="description">V12.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/kzr9226nujowvws/%25F0%259D%2597%25A6%25F0%259D%2597%25B8%25F0%259D%2598%2586_%25F0%259D%2597%25A9%25F0%259D%2597%259C%25F0%259D%2597%25A3_%25F0%259D%2597%2595%25F0%259D%2597%25A8%25F0%259D%2597%259A_%25F0%259D%2597%25AA%25F0%259D%2597%2594.zip/file')">Sc Sky Vip</button>
+        <p class="description">gk tahu sc apa.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/d9u6jc5d9relrov/PIKZBUGV2.zip/file')">Sc pikz</button>
+        <p class="description">sc bug v2.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/ud6ggd9deot2y4j/SC_BUG_TELE_%2528SFILE.MOBI%2529.zip/file')">Sc bugo</button>
+        <p class="description">sc bug tele.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/n8ah5jbjransf02/harleyXsc.zip/file')">Sc cpanel</button>
+        <p class="description">by herley.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/4wfc8l1tsea0837/SC_BUG_V11.zip/file')">Sc bug</button>
+        <p class="description">v11.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/nczi1vkgwbwclx5/PutraXploit+Available+V3⚡⚡.zip/file')">Sc putrax</button>
+        <p class="description">v3.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/52rxbm1xxkcic57')">fire base</button>
+        <p class="description">versi simpel.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/jncijlxr2hodl6p/DevilScript_5.0_Gen_3_By_DaxzyyOffc%25282%2529.zip/file')">Sc Devil</button>
+        <p class="description">Devil 5.0 Gen 3.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/1rltb9at8fw0cgv/WA+IMMUNE+FINIXS666+@UPDATE+SC+VIP+FREE.zip/file')">Wa immune Finix</button>
+        <p class="description">Wa Immune nih.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/z1e4iv726v3dnmj/SPIDER_V7_SHARED_%2540UPDATE_SC_VIP_FREE.zip/file')">Sc Spider</button>
+        <p class="description">Sc Ini Versi 7.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/7mbgyqoabsw2llj/WhatsApp_Blash_V9.apk.zip/file')">Wa Blash</button>
+        <p class="description">Wa Yg katanya Anti Ban.</p>
+             
+        <button onclick="openLink('https://www.mediafire.com/file/wpmzod1fxu82xeg/script_paktzy.zip/file')">Sc Tzy</button>
+        <p class="description">Sc Yg 40+ MB Sc Dulu ini.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/pfisa5rf0z2x691/%25E1%25A4%25AA%25E1%25A4%25A3%25E1%25AA%25B0%25F0%259D%2590%2595%25CD%25A2%25F0%259D%2590%259A%25E1%25A4%25A1%25F0%259D%2590%25AB%25F0%259D%2590%2593%25CD%25A2%25E1%25A4%25A1%25F0%259D%2590%25B1%25E1%25A4%25A1%25F0%259D%2590%2592%25E1%25A4%25B3_%25F0%259D%2590%2595%25F0%259D%259F%2597.zip/file')">Sc Varel</button>
+        <p class="description">Sc V9 User : varelmekk PW : varelmek13.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/az98bb1s8v4uv2g/%F0%9F%92%80%F0%9D%99%83%F0%9D%99%96%F0%9D%99%A3%F0%9D%99%A2%F0%9D%99%A4%F0%9D%99%99%F0%9D%98%BE%F0%9D%99%9E%F0%9D%99%A5%F0%9D%99%A4%F0%9D%99%A0_%F0%9D%99%AB%F0%9D%9F%AF_%F0%9D%99%A3%F0%9D%99%9A%F0%9D%99%AC_%F0%9D%99%99%F0%9D%99%9A%F0%9D%99%A1%F0%9D%99%9A%F0%9D%99%A9%F0%9D%99%9A_%F0%9D%99%A8%F0%9D%99%9A%F0%9D%99%98%F0%9D%99%AA%F0%9D%99%A7%F0%9D%99%9E%F0%9D%99%A9%F0%9D%99%AE.7z/file')">Sc Hanz</button>
+        <p class="description">Sc Hanz Cipok V3.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/yib7zygznwaoz12/DEVILL+v6.0+[+Security+&+Powerfull+].7z/file')">Devil</button>
+        <p class="description">Sc Devil V6. 0 Ada Data Base.</p>
+                     
+        <button onclick="openLink('https://www.mediafire.com/file/d98izvsjhrd2uhw/SC_TEMPORARY_WA_VIA_TELE.zip/file')">Sc Temporary</button>
+        <p class="description">Ini sc Via Tele Keknya.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/xv8397lw055ryqf/WA+BANTENG+MEGAWATI+🥵/file')">Wa Immune</button>
+        <p class="description">Wa Banteng.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/kjyin4lsnn7i1x1/xbug9%2528cr%2540ck_aphrodite%2529_shared_%2540UPDATESCVIPFREE.zip/file')">Sc Xbug</button>
+        <p class="description">V9 Delete Data Base.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/hc0m84uge5cyp8a/QIO+V17+ORIGINAL.zip/file')">Sc Qio</button>
+        <p class="description">Ini v17 + Ori.</p>
+                      
+        <button onclick="openLink('https://www.mediafire.com/file/r0p9cl3ujgj6q5r/ZʏɴxᴢᴏxXI+Khusus+Owner.zip/file')">Sc Zynxzo</button>
+        <p class="description">V X1.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/l1y3js622tupj0u/laxxy_3.0.zip/file')">Sc Laxxy</button>
+        <p class="description">Sc Laxxy v3. 0.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/5niwov9o9gugg8d/cpanel_cing_100gb.zip/file')">Sc Cpanel</button>
+        <p class="description">Cpanel Ampe 100GB.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/qfe7oyrim8v8exh/Zʏɴxᴢᴏᴏᴠᴠɪᴘ+V9.0(1).zip/file')">Zynxzo</button>
+        <p class="description">Ini V9.</p>
+                     
+        <button onclick="openLink('https://www.mediafire.com/file/wmx9duqck3yjtc0/STRAVA+V4.5+NO+ENC+BY+OWENSDEV/file')">Strava</button>
+        <p class="description">V4.5 No Enc.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/egm3sgmfdrzx5q4/DeltaTech.id_-_AikaLuchifer666.zip/file')">Sc Aika 1.3</button>
+        <p class="description">Key : DzilXDelta.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/r0hl2ua05a8h2vt/SC+ALICE+999JUTAA+#FAUZIALIFATAH.zip/file')">Sc Aice</button>
+        <p class="description">v999JT 🗿.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/re9gwpbrubyxkh4/%25F0%259D%2599%25B5%25F0%259D%259A%2592%25F0%259D%259A%2597%25F0%259D%259A%2592%25F0%259D%259A%25A1_444_%255B_NEW_%255D.zip/file')">Sc Finix</button>
+        <p class="description">Ini Versi 444.</p>
+                     
+        <button onclick="openLink('https://www.mediafire.com/file/62vmem6cwilqrkn/ZENO-V3+(+FIX+).zip/file')">sc Zeno</button>
+        <p class="description">V3.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/4i2vjy4ogv9xhuw/spam_pairing_wa_no_module_%2540PAEDULZ.zip/file')">Sc Spam</button>
+        <p class="description">Ini sc Spam Pairing No Module.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/njrvenws8vww6e9/Painzy_9.5_cr%2540ckd_by_vinz.7z/file')">Sc Painz V9. 5</button>
+        <p class="description">Key : byvinz.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/m3oac2d2vo56zlu/OSTRAX_CRASH_v1.zip/file')">Sc Ostrax</button>
+        <p class="description">Sc Ini V1.</p>
+                     
+        <button onclick="openLink('https://www.mediafire.com/file/4oiuzfvec8aanpr/%25C2%25A9DeltaV7.zip/file')">Sc Delta</button>
+        <p class="description">Sc Inj v7</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/je7hymre6msj9oi/ZENO-V2.zip/file')">Sc Zeno</button>
+        <p class="description">Sc nya V2.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/3dnv4w14g3d0q1u/Clara_XV4_%2540PAEDULZ.zip/file')">Sc Clara</button>
+        <p class="description">Sc Xv4.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/4bhppjxpwgaegbu/afgan-enc.zip/file')">Sc Afgan</button>
+        <p class="description">Sc Ini Di Enc.</p>
+                     
+        <button onclick="openLink('https://www.mediafire.com/file/r644evyfuplqhlw/%25EA%2588%25A2_%25F0%259D%2591%25BD%25F0%259D%2592%258A%25F0%259D%2592%2591%25F0%259D%2592%2586%25F0%259D%2592%2593_%25F0%259D%2591%25AF%25F0%259D%2592%2590%25F0%259D%2592%2594%25F0%259D%2592%2595%25F0%259D%2592%258A%25F0%259D%2592%258F%25F0%259D%2592%2588.apk/file')">Wa Immine</button>
+        <p class="description">By Viper.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/5yrlo2t8ux467n9/PAK+TZYxBILL-MD.zip/file')">Pak Tzy X</button>
+        <p class="description">Sc TzyXBill.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/xq5avqa1ri6jqkf/rafatarv3+no+enc.zip/file')">Sc Raftar</button>
+        <p class="description">Sc V3 + No Enc.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/czaci1u1hkq08ai/YKZIR_BOTZ_V7.zip/file')">Sc Botz Ykzir</button>
+        <p class="description">V7.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/8j27rhu9msp9t7r/Cepio+V1.2.zip/file')">Sc Cepio</button>
+        <p class="description">Sc Ini V1. 2 dan 1200+ Vitur</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/vtfmaxffzb4aclf/INVASION+[GetsuZo].zip/file')">Sc Pak Tzu</button>
+        <p class="description">Sc Invasion.</p>
+        
+        <button onclick="openLink('https://sfile.mobi/7phHcfsAy4j')">Sc Bot</button>
+        <p class="description">Rxhl V10.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/cv070dqfudfug7j/RxhL_V11_VIP.zip/file')">Rxhl</button>
+        <p class="description">V11 Key :rxhlllv11</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/uuigj8hn94irght/%E1%B4%A0%C9%AA%E1%B4%98+x%CA%9C%C9%AA%CA%80%E1%B4%8F+%C9%A2%E1%B4%87%C9%B4%D3%A0.zip/file')">Xhiro Gen 3</button>
+        <p class="description">Ada 1000+ Vitur.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/63clgs503ch4u0z/Whatsapp_Ori_2.24.20.20_%25C2%25A9_UPDATE_SC_VIP_FREE.apk/file')">Wa Beta</button>
+        <p class="description">Wa Beta Biasa.</p>
+                
+        <button onclick="openLink('https://link2unlock.com/86de8')">sc bug</button>
+        <p class="description">Sc bug Lynn v4.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/9tmjoj242qpavls/⭑̤⟅+༑+▾+𝐓͢𝐙ͯ𝐘+▾+༑̴⟆+⭑̤.zip/file')">Sc Tzy</button>
+        <p class="description">Sc Tzy Versi Lite.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/mv3v103bty5upvx/𝐁𝐀𝐘𝐙_𝐂𝐑𝐀𝐒𝐇_𝐍𝐄𝐗𝐓_𝐆𝐄𝐍𝐄𝐑𝐀𝐓𝐈𝐎𝐍_.zip/file')">Sc Bayz</button>
+        <p class="description">Gk tau sc apa.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/wtzj465knyjlin6/brutality_v4_by_dika_id_%255Bno_encrypt%255D.zip/file')">Brutality v4</button>
+        <p class="description">Sc bug no enc katanya</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/y1ull351hqs3xit/DeltaTech.id_-_AikaLuchifer666.zip/file')">Sc delta</button>
+        <p class="description">delta tach 666.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/yh3yurk2gjtxuox/DITZHARD_GEN_2_FIXED.zip/file')">Ditz hard</button>
+        <p class="description">gen 2.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/pbmve812r0w7o8g/%25F0%259D%2590%2587%25F0%259D%2590%259A%25F0%259D%2590%25A7%25F0%259D%2590%25B3%25F0%259D%2590%2597_%25F0%259D%2590%2582%25F0%259D%2590%25AB%25F0%259D%2590%259A%25F0%259D%2590%25AC%25F0%259D%2590%25A1_%25F0%259D%2590%2595%25F0%259D%259F%2592_%25F0%259D%2590%2581%25F0%259D%2590%25B2_%25F0%259D%2590%2587%25F0%259D%2590%259A%25F0%259D%2590%25A7%25F0%259D%2590%25B3%25F0%259D%2590%2597%25F0%259D%2590%2585.zip/file')">Hanz X Crash</button>
+        <p class="description">Sc bot bug v4.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/wssnmg8pqhchnms/%25F0%259D%2597%2597%25F0%259D%2597%259B%25F0%259D%2597%2596%25F0%259D%2597%25A5%25F0%259D%2597%2594%25F0%259D%2597%25A6%25F0%259D%2597%259B_%25F0%259D%2597%25A2%25F0%259D%2597%25A1%25F0%259D%2597%2598_%25F0%259D%2597%2597%25F0%259D%2597%259C%25F0%259D%2597%25A7%25F0%259D%2597%25AD%25F0%259D%2597%259B%25F0%259D%2597%2594%25F0%259D%2597%25A5%25F0%259D%2597%2597_.zip/file')">Dh crash</button>
+        <p class="description">sc bot DH CRASH.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/sh6o8gkqnx8z0an/nerokbetav1.0.zip/file')">Sc norok</button>
+        <p class="description">sc bug norok beta v1.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/woo6okwu79pzrp3/ZanssKakgemV2.zip/file')">Zanss bug</button>
+        <p class="description">sc zanss kak gem v2.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/83kus3xwx48vg7o/ZHNZKV3LEAK.zip/file')">Sc ZHNZKV</button>
+        <p class="description">V3.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/gdf0qjxfxaychl1/SC_HW_V27_REMAKE_NO_ENC_BY_RAINSTOREID.zip/file')">Sc HW Bug</button>
+        <p class="description">V27 Remake.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/q0bmdj57i82dv6q/PermenMDXDDoS.zip/file')">Sc bot</button>
+        <p class="description">Permen X Ddos.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/m3hz0y2novv0m8j/MDV7+NO+SCAN+BY+RIIXGANZ.zip/file')">Sc bot MD</button>
+        <p class="description">V7 No Scan.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/hciyfm59om4bspb/Nekomimi.zip/file')">Sc Bot Nekomini</button>
+        <p class="description">Sc Bot.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/97kznjb48a3c7ty/ELAINA-AI+BUTTON+FIX+V4.zip/file')">Sc Bot Elaina</button>
+        <p class="description">Ai + Button + Fix V4.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/da5i5p5iq8bwgug/Veemon+[+BETA+%E2%80%A2+NO+ENC+].zip/file')">Sc Veemon</button>
+        <p class="description">Beta + No Enc.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/pgf4rhfzwct9id3/Christy+MD.zip/file')">Sc bot</button>
+        <p class="description">Sc Christy MD.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/ytu8tywb40xpzw8/YUTA_MD.zip/file')">Sc Yuta</button>
+        <p class="description">Sc Yuta.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/d1knw6492s8im0l/V1.2_BETA_%255B_OFFMON_MD_%255D.zip/file')">Sc OFFMON</button>
+        <p class="description">Is Versi 1.2 Beta.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/9hum7mq7i4i491s/Devil_Script_4.1_Gen_2_%2528fixed_all_bug%2529.zip/file')">Sc devil</button>
+        <p class="description">Veri 4.1 Gen 2.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/mdrp6gr1ltobfcx/spam+enc.zip/file')">Sc Spam</button>
+        <p class="description">Spam Anti Limit + Enc.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/ebh17xyymdsrsbd/BISNIS_V20.20.apk/file')">Wa beta bisnis</button>
+        <p class="description">Versi new.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/76lc51hlzw055r1/Spider_v7_ciudad_de_jomokerto.zip/file')">Sc Spider V7</button>
+        <p class="description">Sc v7 ciudad de jomokerto.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/edijs2ba21v7dhi/AkiraaBot+gen-2.zip/file')">Sc akira</button>
+        <p class="description">Gen 2.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/tgz5kr7hu7iahi7/CPANEL_V2.zip/file')">Sc cpanel</button>
+        <p class="description">sc cpanel v2 no delay katanya.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/pru6mzfshnh09tc/Wa+badak+napoleon+By+VarzX.zip/file')">Wa badak</button>
+        <p class="description">katanya lo 🗿.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/d6wso9bgyp43nig/DG_XEON_V15.zip/file')">Sc Xeon</button>
+        <p class="description">sc dg xeon v15.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/s8et6aqgzhayqyz/Clara-Xvvip.zip/file')">sc bot</button>
+        <p class="description">xvip old.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/0ee8rc17t0u84an/ALWAYS+XYREZZ+V+8.0.zip/file')">Sc Zyrezz</button>
+        <p class="description">V8.0.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/8lt6w7t999f22c3/Dellbot+V6+Gen+1.zip/file')">Dellbot</button>
+        <p class="description">v6 gen 1.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/72fdkgoqheho2qm/SCARIFINMODS1.0%2528BETABOTZ%2529.7z/file')">Sc bot</button>
+        <p class="description">sc arifin mods.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/5d177hov0g0uves/update+lance+v25.zip/file')">Sc lance</button>
+        <p class="description">v 25.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/gzeb48zt91nmqqc/Virdark_-_3.9.zip/file')">virdex</button>
+        <p class="description">3.9.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/yiqgoe9qkx1bz85/SC+CPANEL+PUSHKON+INSTAL+PANEL+DDOS+BUG+VIP+BY+QINN.zip/file')">sc qinn</button>
+        <p class="description">ddos+bug dll.</p>
+                
+        <button onclick="openLink('https://link2unlock.com/c642f')">Sc Alya</button>
+        <p class="description">Sc alya MD.</p>
+        
+        <button onclick="openLink('https://sfl.gl/c0LRU')">Devil V7</button>
+        <p class="description">Sc devil V7 Katanya Ini Ori.</p>
+        
+        <button onclick="openLink('https://sfl.gl/FC3vG')">Sc Bot</button>
+        <p class="description">Sc Luxxy V3.</p>
+                
+        <button onclick="openLink('https://www.subs4unlock.id/0VA3Ed')">Sc Michie</button>
+        <p class="description">V1.</p>
+        
+        <button onclick="openLink('https://www.subs4unlock.id/cvd20Eo')">Sc Brutality</button>
+        <p class="description">v5.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/u72y4lraec0nuvt/DELTACRASH_V5_%2523FAUZIALIFATAH.zip/file')">Sc Delta</button>
+        <p class="description">ini v5.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/icmah6t78wvy8vs/Victoria+Rosalind+-+v4.1.0+Set.zip/file')">Sc Victoria</button>
+        <p class="description">V4.1.0.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/jr2r3i6s0q7gcaq/NizmBotz.zip/file')">Sc delta</button>
+        <p class="description">Delta X Qio.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/ivb87a4q9kbr7h1/VALDEZ-BOTZ-V2.zip/file')">Sc Campuran</button>
+        <p class="description">V2.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/85peqcbzcv6rdpd/yilzixmork.zip/file')">Sc Yizli</button>
+        <p class="description">Sc Yg Katanya No Enc + Key + Harga 200k.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/vj1fkdpmi646z4h/AXCELZZ_BUG_V4.zip/file')">Sc acxelzz</button>
+        <p class="description">bug v4.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/coixyo6bcen5z0c/X-DENJI%25F0%259F%2592%25A8%25F0%259F%2594%25A5_V1.zip/file')">Sc X Denji</button>
+        <p class="description">is v1.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/3kq73er65w4cnvb/Syafriall.zip/file')">Sc Bug x Ddos</button>
+        <p class="description">Sc tu.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/r8k6fdei432do5m/SkyBotzV5%F0%9F%8D%81.zip/file?dkey=7qsactbqinx&r=168')">Sc Skyboz</button>
+        <p class="description">v5.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/530rkwuh0ghdjoi/%2540AlwaysAqioV16ori.zip/file')">Sc Qio</button>
+        <p class="description">Qio v16.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/v66hrf281ux6d1d/SC_PUSHKONTAK.zip/file')">Sc Pushkontak</button>
+        <p class="description">Sc Push.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/ibz0wk5y12pqnau/case².7z/file')">Case</button>
+        <p class="description">Macam2 Case.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/fu7tb57hwxpkm7q/APK+Cek+Banned+By+©+Jarrz+DDoa.apk/file')">apk</button>
+        <p class="description">apk cek ban / unban.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/m5nis180m0gccjk/Velinia.zip/file??dkey=gxmg5mok8uc&r=1718')">sc bot</button>
+        <p class="description">sc velinia.</p>
+        
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 2 -->
+<div class="container hidden" id="example2-container">
+    <h3>Menu Download Apk</h3>
+    <button onclick="openLink('https://www.mediafire.com/file/jxq7rbl3ecizcx5/%25F0%259F%2591%2591%25F0%259D%2590%2582%25F0%259D%2590%2584%25F0%259D%2590%258A_%25F0%259D%2590%2581%25F0%259D%2590%2580%25F0%259D%2590%258D%25F0%259D%2590%2588%25F0%259D%2590%2583%25F0%259D%2590%258E%25F0%259F%2591%2591_2.21.16.20.apk/file')">Apk Cek</button>
+        <p class="description">Apk Cek Banned.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/pt7ccu6g9vwduzg/𝜊ғᷜғͣɪͬᴄͥɪᷡᴀͣʟ°₳₲₩₳°V326_2.24.16.76_+MELHOR+ZAP.apk/file')">Wa imune karina</button>
+        <p class="description">v326.</p>
+                
+        <button onclick="openLink('https://www.mediafire.com/file/b0bearhg1bbkk1e/HAMS-𝐗+RAT+𝐕1_signed.apk/file')">apk sadap</button>
+        <p class="description">hams x xrat.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/w4zns1ktmzmujd5/The+blue+remake_clone.apk/file')">Wa immune aruhi</button>
+        <p class="description">remake by codex.</p>
+        
+        <button onclick="openLink('https://www.mediafire.com/file/7zjxsnvv87newv2/FM____________________________________________V61.apk/file')">Wa ᕼᗅᑤᖽᐸᙍᖇᒪᗅᗫᖶᙍᑤᕼ</button>
+        <p class="description">Wa Immune ᕼᗅᑤᖽᐸᙍᖇᒪᗅᗫᖶᙍᑤᕼ.</p>
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 🗿3 -->
+<div class="container hidden" id="example3-container">
+    <h3>Menu Store</h3>
+    <header>
+        Welcome to Levi Menu <br> Mati aja Kalo Ambil² Code
+        <div class="menu-icon" onclick="toggleDropdown()">⋮</div>
+        <div id="dropdown" class="dropdown">
+            <a href="#jual-panel" onclick="showPanel()">Jual Panel</a>
+            <a href="#jual-vps" onclick="showVPS()">Jual VPS</a>
+            <a href="#jual-bug" onclick="showBUG()">Open Murbug</a>
+            <a href="#jual-sc" onclick="showSC()">Jual sc</a>
+            <a href="#jual-log" onclick="showLOG()">Open murlog</a>
+        </div>
+    </header>
+
+    <div id="panel-section" class="container">
+    
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 2">
+            <h3>⚙️Panel BOT⚙️</h3>
+            <p>📦Ram 1 GB 📦</p>
+            <div class="price">1.000</div>
+            <a href="https://wa.me/6282261282684" class="buy-btn" target="_blank">📦Beli📦</a>
+        </div>
+
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 2 GB 📦.</p>
+            <div class="price">2K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 3 GB 📦.</p>
+            <div class="price">3K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 4 GB 📦.</p>
+            <div class="price">4 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 5 GB 📦.</p>
+            <div class="price">5 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 6 GB 📦.</p>
+            <div class="price">6 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 7 GB 📦.</p>
+            <div class="price">7 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 8 GB 📦.</p>
+            <div class="price">8 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                 
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 9 GB 📦.</p>
+            <div class="price">9 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram 10 GB 📦.</p>
+            <div class="price">10 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦Ram unli GB 📦.</p>
+            <div class="price">12 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦 reseller Panel 📦.</p>
+            <div class="price">15 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️PANEL BOT⚙️</h3>
+            <p>📦 ADP panel 📦.</p>
+            <div class="price">17 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+    </div>
+
+    <div id="vps-section" class="container" style="display:none;">
+    
+            <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️VPS⚙️</h3>
+            <p>📦Ram 1 Core 1 📦.</p>
+            <div class="price">15 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+            <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️VPS⚙️</h3>
+            <p>📦Ram 2 Core 1 📦.</p>
+            <div class="price">20 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+            <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️VPS⚙️</h3>
+            <p>📦Ram 2 Core 2 📦.</p>
+            <div class="price">25 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+            <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️VPS⚙️</h3>
+            <p>📦Ram 4 Core 2 📦.</p>
+            <div class="price">30 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+            <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️VPS⚙️</h3>
+            <p>📦Ram 8 Core 4 📦.</p>
+            <div class="price">40 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+            <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️VPS⚙️</h3>
+            <p>📦Ram 16 Core 4 📦.</p>
+            <div class="price">50 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+        </div>
+    </div>
+<!-- PEMBATAS TEMPLATE STORE -->
+    <div id="bug-section" class="container" style="display:none;">
+    
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️MURBUG⚙️</h3>
+            <p>📦Script :  Vaison X (TZY) 📦.</p>
+            <div class="price">30 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+            
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️MURBUG⚙️</h3>
+            <p>📦Script :  Devil 7.0📦.</p>
+            <div class="price">30k K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+             
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️MURBUG⚙️</h3>
+            <p>📦Script :  Delta - DARKNESS 📦.</p>
+            <div class="price">40 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+            
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️MURBUG⚙️</h3>
+            <p>📦Script :  Finix 📦.</p>
+            <div class="price">20 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+            
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️MURBUG⚙️</h3>
+            <p>📦Script :  Qio 📦.</p>
+            <div class="price">20 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+            
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️MURBUG⚙️</h3>
+            <p>📦Script :  Invasion 📦.</p>
+            <div class="price">30K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+    </div>
+    
+    <div id="sc-section" class="container" style="display:none;">
+            
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️Sell sc⚙️</h3>
+            <p>📦Script :  Vasion X New Gen 📦.</p>
+            <div class="price">350 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️Sell sc⚙️</h3>
+            <p>📦Script :  Invasion New Gen📦.</p>
+            <div class="price">300 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                     
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️Sell sc⚙️</h3>
+            <p>📦Script :  ION New Gen 📦.</p>
+            <div class="price">70 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️Sell sc⚙️</h3>
+            <p>📦Script :  Devil 7.0📦.</p>
+            <div class="price">40 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️Sell sc⚙️</h3>
+            <p>📦Script :  Delta - Darknesd 📦.</p>
+            <div class="price">200 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️Sell sc⚙️</h3>
+            <p>📦Script :  Yilzi V3 📦.</p>
+            <div class="price">250 K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+                    
+        <div class="product-card">
+            <img src="https://files.catbox.moe/2j4tzt.jpg" alt="Product 1">
+            <h3>⚙️Sell sc⚙️</h3>
+            <p>📦Script :  Painzy 📦.</p>
+            <div class="price">??K</div>
+            <a href="https://wa.me/6281234567890" class="buy-btn" target="_blank">Beli 📦</a>
+        </div>
+        
+    </div>
+    
+    <div id="log-section" class="container" style="display:none;">
+        <div class="product-card">
+            <img src="https://files.catbox.moe/m7e0pp.jpg" alt="Product 3">
+            <h3>Product 3 - murlog</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="price">$49.99</div>
+            <a href="https://wa.me/6281234567890?text=Hello%20I%20am%20interested%20in%20Product%203" class="buy-btn" target="_blank">Buy Now</a>
+        </div>
+    </div>
+    
+    <footer>
+        &copy; Mati Ae Kalo Ambil² Code <br> Gk Bisa Buat + Berkreatif <br> 😹😂😹😂😹 | All Rights Reserved
+    </footer>
+
+<!-- Contoh Menu ☠️ 4 -->
+<div class="container hidden" id="example4-container">
+    <h3>Menu Store</h3>
+    <button onclick="openLink('https://ngl.link/Levi63232')">Tanya Levi</button>
+        <p class="description">Tekan Aja Jika Ingin Ada Hal Yg Di Tanyakan.</p>
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 5 -->
+<div class="container hidden" id="example5-container">
+    <h3>Menu Ganti Gambar</h3>
+    
+    <button onclick="changeBackgroundImage('https://i.ibb.co/5c0WWbB/3z6rhspxeoi.jpg')">Gambar 1</button>
+    <p class="description">Sevens Mods777</p>
+    
+    <button onclick="changeBackgroundImage('https://i.ibb.co/V9YN7Ws/tmx6l83hct.jpg'')">Gambar 2</button>
+    <p class="description">Anime Kuning</p>
+        
+    <button onclick="changeBackgroundImage('https://i.ibb.co/KhMwKrs/hvhks64dchh.jpg')">Gambar 3</button>
+    <p class="description">Relzz Wangsaf</p>
+         
+    <button onclick="changeBackgroundImage('https://i.ibb.co/wK2ZHSS/uyoxm9ki2l.jpg')">Gambar 4</button>
+    <p class="description">Levi Attcakers</p>
+        
+    <button onclick="changeBackgroundImage('https://i.ibb.co/ymT6x86/0p284u854ik.jpg')">Gambar 5</button>
+    <p class="description">Sunset</p>
+        
+    <button onclick="changeBackgroundImage('https://i.ibb.co/C86JMDX/1idjo7butv.jpg')">Gambar 6</button>
+    <p class="description">Anime Gril 1</p>
+        
+    <button onclick="changeBackgroundImage('https://i.ibb.co/0nP27s3/pybpo7ub3ef.jpg')">Gambar 7</button>
+    <p class="description">Anime Gril 2</p>
+    
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 6 -->
+<div class="container hidden" id="example6-container">
+  <input type="text" id="display" disabled><br>
+    <h3>Menu KALKULATOR</h3>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('4')">4</button><br>
+    
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button><br>
+    
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('+')">⚙️ Tambah</button><br>
+    
+    <button onclick="appendToDisplay('-')">🧊 Kurang</button>
+    <button onclick="appendToDisplay('*')">⚙️ Kali</button>
+    <button onclick="clearDisplay()">Hapus Semua</button>
+    <button onclick="appendToDisplay('/')">✅ Bagi</button><br>
+    
+    <button onclick="calculate()" style="width: 215px;">=</button>
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 7 -->
+<div class="container hidden" id="example7-container">
+    <h3>Menu Get My IP</h3>
+    <button class="menu-button" onclick="getMyIP()">Dapatkan IP Saya</button>
+<div class="ip-info" id="ipInfo">IP Anda: Belum ditemukan</div>
+<button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 8 -->
+<div class="container hidden" id="example8-container">
+    <h3>Menu Track IP</h3>
+<input type="text" id="ipInput" placeholder="Enter IP address" />
+    <button onclick="trackIP()">Track IP</button>
+    
+    <div id="result"></div>
+    
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 9 -->
+<div class="container hidden" id="example9-container">
+    <h3>Menu OPEN WEBSITE</h3>
+  <input type="text" id="urlInput" placeholder="Masukan URL Lalu Enter" onkeydown="checkEnter(event)">
+    
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 10 -->
+<div class="container hidden" id="example10-container">
+    <h3>Menu Ubah Background</h3>
+     <button id="bgOnButton" onclick="startBackgroundAnimation()">Background On</button>
+    <button id="bgOffButton" onclick="stopBackgroundAnimation()">Background Off</button>
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<!-- Contoh Menu ☠️ 11 -->
+<div class="container hidden" id="example11-container">
+    <h3>Menu Game</h3>
+    <button onclick="startGuessNumber()">Tebak Angka (1-20)</button>
+    <button onclick="startGuessLetter()">Tebak Huruf (A-Z)</button>
+    <button onclick="startTicTacToe()">Tic Tac Toe</button>
+    <button onclick="startGuessFlag()">Tebak Bendera</button>
+    <button onclick="startGuessEmoji()">Tebak Emoji</button>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div id="score">Skor: 0</div>
+    <div class="controls">
+        <div class="control-buttons">
+            <button class="control-button up-button" id="up">↑</button>
+        </div>
+        <div class="control-buttons">
+            <button class="control-button" id="left">←</button>
+            <button class="control-button" id="right">→</button>
+        </div>
+        <div class="control-buttons">
+            <button class="control-button" id="down">↓</button>
+        </div>
+    <div id="gameContainer"></div>
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+        
+<!-- Contoh Menu ☠️ 12 -->
+<div class="container hidden" id="example12-container">
+    <h3>CEK WEB (EROR)</h3>
+     <input type="text" id="urlInput" placeholder="Enter a website URL to check IP">
+    <button onclick="checkIP()">Check IP</button>
+    <iframe id="ipFrame" src="" style="display: none;"></iframe>
+    <button onclick="showMenu()">Kembali ke Menu Utama</button>
+</div>
+
+<script>
+    let attempts = 2; // Jumlah kesempatan login
+    const correctUsername = '1'; // Ganti dengan username yang benar
+    const correctPassword = '1'; // Ganti dengan password yang benar
+    const images = [
+        'https://i.ibb.co/KhMwKrs/hvhks64dchh.jpg', // Gambar 1
+        'https://i.ibb.co/wK2ZHSS/uyoxm9ki2l.jpg', // Gambar 2
+        'https://i.ibb.co/V9YN7Ws/tmx6l83hct.jpg'  // Gambar 3
+    ];
+
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === correctUsername && password === correctPassword) {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('menu').classList.remove('hidden');
+            updateDateTime();
+            setInterval(updateDateTime, 1000); // Update setiap detik
+        } else {
+            attempts--;
+            document.getElementById('error-message').innerText = 'Username atau password salah. Kesempatan tersisa: ' + attempts;
+            document.getElementById('error-message').classList.remove('hidden');
+
+            if (attempts <= 0) {
+                document.getElementById('error-message').innerText = 'Kesempatan habis. Silakan coba lagi.';
+                document.getElementById('login-container').innerHTML = '<p>Silakan muat ulang halaman untuk mencoba lagi.</p>';
+            }
+        }
+    }
+
+    function changeRandomBackgroundImage() {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        document.body.style.backgroundImage = `url('${images[randomIndex]}')`;
+        document.getElementById('image-info').innerText = `Telah Di Ganti: ${images[randomIndex]}`;
+    }
+
+    function updateDateTime() {
+        const now = new Date();
+        const datetime = now.toLocaleString('id-ID', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        });
+        document.getElementById('datetime').innerText = datetime;
+    }
+
+    function showMenu() {
+        document.getElementById('example1-container').classList.add('hidden');
+        document.getElementById('example2-container').classList.add('hidden');
+        document.getElementById('example3-container').classList.add('hidden');
+        document.getElementById('example4-container').classList.add('hidden');
+        document.getElementById('example5-container').classList.add('hidden');
+        document.getElementById('example6-container').classList.add('hidden');
+        document.getElementById('example7-container').classList.add('hidden');
+        document.getElementById('example8-container').classList.add('hidden');
+        document.getElementById('example9-container').classList.add('hidden');
+        document.getElementById('example10-container').classList.add('hidden');
+        document.getElementById('example11-container').classList.add('hidden');
+        document.getElementById('example12-container').classList.add('hidden');
+        document.getElementById('settings-container').classList.add('hidden');
+        document.getElementById('login-container').classList.add('hidden');
+        document.getElementById('menu').classList.remove('hidden');
+    }
+
+    function showExample1() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example1-container').classList.remove('hidden');
+    }
+
+    function showExample2() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example2-container').classList.remove('hidden');
+    }
+
+    function showExample3() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example3-container').classList.remove('hidden');
+    }
+    
+    function showExample4() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example4-container').classList.remove('hidden');
+    }
+
+    function showExample5() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example5-container').classList.remove('hidden');
+    }
+
+    function showExample6() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example6-container').classList.remove('hidden');
+    }
+    
+    function showExample7() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example7-container').classList.remove('hidden');
+    }
+            
+    function showExample8() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example8-container').classList.remove('hidden');
+    }
+    
+    function showExample9() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example9-container').classList.remove('hidden');
+    }
+    
+    function showExample10() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example10-container').classList.remove('hidden');
+    }
+        function showExample11() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example11-container').classList.remove('hidden');
+    }
+    
+    function showExample12() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('example12-container').classList.remove('hidden');
+    }
+    
+    function showSettings() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('settings-container').classList.remove('hidden');
+    }
+
+    function showLogin() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('login-container').classList.remove('hidden');
+        
+    }
+    
+    function changeBackgroundColor(color) {
+        document.body.style.backgroundColor = color;
+    }
+
+    function changeTextColor(color) {
+        document.body.style.color = color;
+    }
+
+    function changeFont(font) {
+        document.body.style.fontFamily = font;
+    }
+    function openLink(url) {
+            window.open(url, '_blank');
+    }
+    function changeBackgroundImage(imageUrl) {
+        document.body.style.backgroundImage = `url('${imageUrl}')`;
+    }
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+    
+    function calculate() {
+        try {
+            var result = eval(document.getElementById('display').value);
+            document.getElementById('display').value = result;
+        } catch (error) {
+            document.getElementById('display').value = 'Error';
+        }
+    }
+    function getMyIP() {
+        // Menggunakan fetch API untuk mendapatkan alamat IP
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ipInfo').innerText = `🧊 Ini IP Mu: ${data.ip}`;
+            })
+            .catch(error => {
+                document.getElementById('ipInfo').innerText = "Gagal mendapatkan IP.";
+            });
+    }
+    function trackIP() {
+            const ip = document.getElementById('ipInput').value;
+            const url = `https://ipwho.is/${ip}`; // API untuk melacak IP
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const resultDiv = document.getElementById('result');
+                    if (data.success === false) {
+                        resultDiv.innerHTML = `<p>Error: ${data.message}</p>`;
+                    } else {
+                        resultDiv.innerHTML = `
+                            <h2>🧊 INI HASIL TRACK IP NYA : : ${data.ip}</h2>
+                            <p><strong>Succes:</strong> ${data.success || 'N/A'}</p>
+                    <p><strong>Type:</strong> ${data.type || 'N/A'}</p>
+                    <p><strong>Continent:</strong> ${data.continent || 'N/A'}</p>
+                    <p><strong>Continent Code :</strong> ${data.continent_code || 'N/A'}</p>
+                    <p><strong>Negara:</strong> ${data.country || 'N/A'}</p>
+                    <p><strong>Kode Negara:</strong> ${data.country_code || 'N/A'}</p>
+                    <p><strong>Region:</strong> ${data.region || 'N/A'}</p>
+                    <p><strong>Region Code:</strong> ${data.region_code || 'N/A'}</p>
+                    <p><strong>Kota:</strong> ${data.city || 'N/A'}</p>
+                    <p><strong>Latidute:</strong> ${data.latitude || 'N/A'}</p>
+                    <p><strong>Longidute:</strong> ${data.longitude || 'N/A'}</p>
+                    <p><strong>Is EU:</strong> ${data.is_eu ? 'Yes' : 'No'}</p>
+                    <p><strong>postal:</strong> ${data.postal || 'N/A'}</p>
+                    <p><strong>Calling Code:</strong> ${data.calling_code || 'N/A'}</p>
+                    <p><strong>Capital:</strong> ${data.capital || 'N/A'}</p>
+                    <p><strong>Borders:</strong> ${data.borders || 'N/A'}</p>
+                    <p><strong>Emoji:</strong> ${data.flag?.emoji || 'N/A'}</p>
+                    <p><strong>Emoji Unicode:</strong> ${data.flag?.emoji_unicode || 'N/A'}</p>
+                    <p><strong>ASN:</strong> ${data.connection?.asn || 'N/A'}</p>
+                    <p><strong>Organisasi:</strong> ${data.connection?.org || 'N/A'}</p>
+                    <p><strong>Isp:</strong> ${data.connection?.isp || 'N/A'}</p>
+                    <p><strong>Domain:</strong> ${data.connection?.domain || 'N/A'}</p>
+                    <p><strong>Id:</strong> ${data.timezone?.id || 'N/A'}</p>
+                    <p><strong>Abbrevation:</strong> ${data.timezone?.abbr || 'N/A'}</p>
+                    <p><strong>IS DST:</strong> ${data.timezone?.is_dst ? 'Yes' : 'No'}</p>
+                    <p><strong>Offset:</strong> ${data.timezone?.offset || 'N/A'}</p>
+                    <p><strong>UtC:</strong> ${data.timezone?.utc || 'N/A'}</p>
+                    <p><strong>Currect Time:</strong> ${data.timezone?.current_time || 'N/A'}</p>
+                    <p><strong>Google Maps:</strong> <a href="https://www.google.com/maps?q=${data.lat},${data.lon}" target="_blank">Lihat Lokasi</a></p>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('result').innerText = 'Error fetching data: ' + error.message;
+                });
+    }
+    function checkEnter(event) {
+            if (event.key === 'Enter') {
+                let url = document.getElementById('urlInput').value;
+                if (url) {
+                    // Tambahkan "https://" jika belum ada
+                    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                        url = 'https://' + url;
+                    }
+                    // Langsung buka URL
+                    window.location.href = url;
+                } else {
+                    alert('Masukkan URL yang valid.');
+                }
+            }
+            
+    }
+    
+    let isAnimating = false;
+        let colors = ["red", "green", "blue", "orange", "purple", "yellow", "pink"];
+        let animationInterval;
+
+        function startBackgroundAnimation() {
+            if (!isAnimating) {
+                isAnimating = true;
+                animationInterval = setInterval(() => {
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.body.style.backgroundColor = randomColor;
+                }, 1000);
+            }
+        }
+
+        function stopBackgroundAnimation() {
+            if (isAnimating) {
+                clearInterval(animationInterval);
+                document.body.style.backgroundColor = ""; // Reset ke warna default
+                isAnimating = false;
+            }
+            // Fubction Game \\
+        }
+        function startGuessNumber() {
+            const numberToGuess = Math.floor(Math.random() * 20) + 1;
+            let attempts = 10;
+            const maxAttempts = 10; // 10 kesempatan
+            let gameHtml = `<h3>Tebak Angka (1-20)</h3>
+                            <p>Silakan tebak angka antara 1 dan 20. Anda punya ${maxAttempts} kesempatan.</p>
+                            <input type="number" id="guessInput" min="1" max="20">
+                            <button onclick="checkGuessNumber(${numberToGuess}, ${maxAttempts})">Tebak</button>
+                            <button onclick="closeGame()">Batal</button>
+                            <p id="guessFeedback"></p>`;
+            document.getElementById('gameContainer').innerHTML = gameHtml;
+            document.getElementById('gameContainer').style.display = 'block';
+        }
+
+        function checkGuessNumber(numberToGuess, maxAttempts) {
+            const guessInput = document.getElementById('guessInput');
+            const guessFeedback = document.getElementById('guessFeedback');
+            const userGuess = parseInt(guessInput.value);
+            attempts++;
+
+            if (userGuess === numberToGuess) {
+                guessFeedback.innerText = "Selamat! Anda menebak dengan benar.";
+            } else if (attempts >= maxAttempts) {
+                guessFeedback.innerText = `Game over! Angka yang benar adalah ${numberToGuess}.`;
+            } else if (userGuess < numberToGuess) {
+                guessFeedback.innerText = "Tebakan Anda terlalu rendah.";
+            } else {
+                guessFeedback.innerText = "Tebakan Anda terlalu tinggi.";
+            }
+        }
+
+        function startGuessLetter() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const letterToGuess = letters[Math.floor(Math.random() * letters.length)];
+            let attempts = 0;
+            const maxAttempts = 5; // 5 kesempatan
+            let gameHtml = `<h3>Tebak Huruf (A-Z)</h3>
+                            <p>Silakan tebak huruf antara A dan Z. Anda punya ${maxAttempts} kesempatan.</p>
+                            <input type="text" id="letterInput" maxlength="1">
+                            <button onclick="checkGuessLetter('${letterToGuess}', ${maxAttempts})">Tebak</button>
+                            <button onclick="closeGame()">Batal</button>
+                            <p id="letterFeedback"></p>`;
+            document.getElementById('gameContainer').innerHTML = gameHtml;
+            document.getElementById('gameContainer').style.display = 'block';
+        }
+
+        function checkGuessLetter(letterToGuess, maxAttempts) {
+            const letterInput = document.getElementById('letterInput');
+            const letterFeedback = document.getElementById('letterFeedback');
+            const userGuess = letterInput.value.toUpperCase();
+            attempts++;
+
+            if (userGuess === letterToGuess) {
+                letterFeedback.innerText = "Selamat! Anda menebak dengan benar.";
+            } else if (attempts >= maxAttempts) {
+                letterFeedback.innerText = `Game over! Huruf yang benar adalah ${letterToGuess}.`;
+            } else {
+                letterFeedback.innerText = "Tebakan Anda salah. Coba lagi!";
+            }
+        }
+
+        function startTicTacToe() {
+            let gameHtml = `<h3>Tic Tac Toe</h3>
+                            <div style="display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px;">
+                                <button onclick="makeMove(0)" id="cell0"></button>
+                                <button onclick="makeMove(1)" id="cell1"></button>
+                                <button onclick="makeMove(2)" id="cell2"></button>
+                                <button onclick="makeMove(3)" id="cell3"></button>
+                                <button onclick="makeMove(4)" id="cell4"></button>
+                                <button onclick="makeMove(5)" id="cell5"></button>
+                                <button onclick="makeMove(6)" id="cell6"></button>
+                                <button onclick="makeMove(7)" id="cell7"></button>
+                                <button onclick="makeMove(8)" id="cell8"></button>
+                            </div>
+                            <p id="ticTacToeFeedback"></p>
+                            <button onclick="closeGame()">Batal</button>`;
+            document.getElementById('gameContainer').innerHTML = gameHtml;
+            document.getElementById('gameContainer').style.display = 'block';
+            resetTicTacToe();
+        }
+
+        let ticTacToeBoard = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+
+        function makeMove(index) {
+            if (ticTacToeBoard[index] === '') {
+                ticTacToeBoard[index] = currentPlayer;
+                document.getElementById(`cell${index}`).innerText = currentPlayer;
+                if (checkWinner()) {
+                    document.getElementById('ticTacToeFeedback').innerText = `${currentPlayer} menang!`;
+                } else if (ticTacToeBoard.every(cell => cell !== '')) {
+                    document.getElementById('ticTacToeFeedback').innerText = "Permainan berakhir seri!";
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            }
+        }
+
+        function checkWinner() {
+            const winningCombinations = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Horizontal
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Vertical
+                [0, 4, 8], [2, 4, 6] // Diagonal
+            ];
+            return winningCombinations.some(combination => {
+                const [a, b, c] = combination;
+                return ticTacToeBoard[a] && ticTacToeBoard[a] === ticTacToeBoard[b] && ticTacToeBoard[a] === ticTacToeBoard[c];
+            });
+        }
+
+        function closeGame() {
+            document.getElementById('gameContainer').style.display = 'none';
+            resetTicTacToe();
+            }
+        function resetTicTacToe() {
+            ticTacToeBoard = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            for (let i = 0; i < 9; i++) {
+                document.getElementById(`cell${i}`).innerText = '';
+            }
+            document.getElementById('ticTacToeFeedback').innerText = '';
+        }
+        function startGuessFlag() {
+        const flags = [
+            { name: "United States", image: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" },
+            { name: "Canada", image: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada.svg" },
+            { name: "Germany", image: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" },
+            { name: "Japan", image: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" },
+            { name: "France", image: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" },
+            { name: "Italy", image: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg" },
+            { name: "India", image: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" },
+            { name: "Brazil", image: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" },
+            { name: "Australia", image: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Flag_of_Australia.svg" },
+            { name: "South Africa", image: "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg" }
+        ];
+
+        const randomFlag = flags[Math.floor(Math.random() * flags.length)];
+        flagAttempts = 0;
+
+        let gameHtml = `<h3>Tebak Bendera</h3>
+                        <p>Silakan tebak bendera dari negara ini:</p>
+                        <img src="${randomFlag.image}" class="flag-image" id="flagImage" />
+                        <input type="text" id="flagInput" placeholder="Masukkan nama negara">
+                        <button onclick="checkGuessFlag('${randomFlag.name}')">Tebak</button>
+                        <button onclick="closeGame()">Batal</button>
+                        <p id="flagFeedback"></p>
+                        <p>Kesempatan: <span id="flagAttempts">4</span></p>`;
+        
+        document.getElementById('gameContainer').innerHTML = gameHtml;
+        document.getElementById('gameContainer').style.display = 'block';
+    }
+
+    function checkGuessFlag(correctAnswer) {
+        const flagInput = document.getElementById('flagInput');
+        const flagFeedback = document.getElementById('flagFeedback');
+        const userGuess = flagInput.value.trim();
+
+        flagAttempts++;
+
+        if (userGuess.toLowerCase() === correctAnswer.toLowerCase()) {
+            flagFeedback.innerText = "Selamat! Anda menebak dengan benar.";
+            document.getElementById('flagAttempts').innerText = "Selesai!";
+        } else if (flagAttempts < 4) {
+            flagFeedback.innerText = `Salah! Coba lagi.`;
+            document.getElementById('flagAttempts').innerText = (4 - flagAttempts).toString();
+        } else {
+            flagFeedback.innerText = `Kesempatan habis! Jawaban yang benar adalah ${correctAnswer}.`;
+            document.getElementById('flagAttempts').innerText = "Selesai!";
+        }
+    }
+
+    function startGuessEmoji() {
+        const emojis = [
+            { name: "😊", emoji: "😊" },
+            { name: "😍", emoji: "😍" },
+            { name: "😢", emoji: "😢" },
+            { name: "😂", emoji: "😂" },
+            { name: "😎", emoji: "😎" },
+            { name: "😜", emoji: "😜" },
+            { name: "😡", emoji: "😡" },
+            { name: "🥳", emoji: "🥳" },
+            { name: "😱", emoji: "😱" },
+            { name: "🤔", emoji: "🤔" }
+        ];
+
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        emojiAttempts = 0;
+
+        let gameHtml = `<h3>Tebak Emoji</h3>
+                        <p>Silakan tebak emoji ini:</p>
+                        <div style="font-size: 48px; margin: 20px;">${randomEmoji.emoji}</div>
+                        <input type="text" id="emojiInput" placeholder="Masukkan nama emoji">
+                        <button onclick="checkGuessEmoji('${randomEmoji.name}')">Tebak</button>
+                        <button onclick="closeGame()">Batal</button>
+                        <p id="emojiFeedback"></p>
+                        <p>Kesempatan: <span id="emojiAttempts">4</span></p>`;
+        
+        document.getElementById('gameContainer').innerHTML = gameHtml;
+        document.getElementById('gameContainer').style.display = 'block';
+    }
+
+    function checkGuessEmoji(correctAnswer) {
+        const emojiInput = document.getElementById('emojiInput');
+        const emojiFeedback = document.getElementById('emojiFeedback');
+        const userGuess = emojiInput.value.trim();
+
+        emojiAttempts++;
+
+        if (userGuess === correctAnswer) {
+            emojiFeedback.innerText = "Selamat! Anda menebak dengan benar.";
+            document.getElementById('emojiAttempts').innerText = "Selesai!";
+        } else if (emojiAttempts < 4) {
+            emojiFeedback.innerText = `Salah! Coba lagi.`;
+            document.getElementById('emojiAttempts').innerText = (4 - emojiAttempts).toString();
+        } else {
+            emojiFeedback.innerText = `Kesempatan habis! Jawaban yang benar adalah ${correctAnswer}.`;
+            document.getElementById('emojiAttempts').innerText = "Selesai!";
+        }
+    }
+
+    function closeGame() {
+        document.getElementById('gameContainer').style.display = 'none';
+        document.getElementById('gameContainer').innerHTML = ''; // Clear game content
+    }
+    const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const box = 20; // Ukuran setiap kotak
+        let snake = [{ x: box * 5, y: box * 5 }];
+        let direction = 'RIGHT';
+        let food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
+        let score = 0;
+
+        // Menggambar ular
+        function drawSnake() {
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillStyle = (i === 0) ? 'green' : 'lightgreen'; // Kepala dan tubuh
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+                ctx.strokeStyle = 'darkgreen';
+                ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+            }
+        }
+
+        // Menggambar makanan
+        function drawFood() {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(food.x, food.y, box, box);
+        }
+
+        // Menangani input arah dari keyboard
+        document.addEventListener('keydown', event => {
+            if (event.key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP';
+            else if (event.key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
+            else if (event.key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
+            else if (event.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
+        });
+
+        // Menangani input arah dari tombol kontrol
+        document.getElementById('up').addEventListener('click', () => {
+            if (direction !== 'DOWN') direction = 'UP';
+        });
+        document.getElementById('down').addEventListener('click', () => {
+            if (direction !== 'UP') direction = 'DOWN';
+        });
+        document.getElementById('left').addEventListener('click', () => {
+            if (direction !== 'RIGHT') direction = 'LEFT';
+        });
+        document.getElementById('right').addEventListener('click', () => {
+            if (direction !== 'LEFT') direction = 'RIGHT';
+        });
+
+        // Memperbarui posisi ular
+        function updateSnake() {
+            let head = { x: snake[0].x, y: snake[0].y };
+
+            if (direction === 'UP') head.y -= box;
+            if (direction === 'DOWN') head.y += box;
+            if (direction === 'LEFT') head.x -= box;
+            if (direction === 'RIGHT') head.x += box;
+
+            // Cek makanan
+            if (head.x === food.x && head.y === food.y) {
+                score += 10; // Tambah skor 10 saat makan
+                document.getElementById('score').innerText = `Skor: ${score}`;
+                food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
+                snake.unshift(head); // Tambah kepala
+            } else {
+                snake.pop(); // Hapus ekor jika tidak makan
+                snake.unshift(head); // Tambah kepala
+            }
+
+            // Cek batas
+            if (head.x < 0) head.x = canvas.width - box; // Jika keluar dari kiri
+            if (head.y < 0) head.y = canvas.height - box; // Jika keluar dari atas
+            if (head.x >= canvas.width) head.x = 0; // Jika keluar dari kanan
+            if (head.y >= canvas.height) head.y = 0; // Jika keluar dari bawah
+
+     
+            // Cek tabrakan dengan tubuh ular
+            if (collision(head, snake)) {
+                alert('Game Over! Skor Anda: ' + score);
+                document.location.reload();
+            }
+        }
+
+        // Cek tabrakan dengan tubuh ular
+        function collision(head, array) {
+            for (let i = 1; i < array.length; i++) {
+                if (head.x === array[i].x && head.y === array[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Gambar permainan
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Hapus canvas
+            drawSnake();
+            drawFood();
+            updateSnake();
+        }
+
+        function isValidURL(url) {
+            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+            '((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|'+ // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-zA-Z\\d%_.~+]*)*'+ // port and path
+            '(\\?[;&a-zA-Z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-zA-Z\\d_]*)?$','i'); // fragment locator
+            return !!pattern.test(url);
+        }
+
+        function checkIP() {
+            var urlInput = document.getElementById('urlInput').value;
+            var errorDiv = document.getElementById('error');
+            var iframe = document.getElementById('ipFrame');
+            
+            if (urlInput) {
+                // Cek apakah URL valid
+                if (!isValidURL(urlInput)) {
+                    errorDiv.textContent = "Please enter a valid URL (e.g., https://example.com)";
+                    iframe.style.display = "none";
+                    return;
+                }
+                
+                // Pastikan input hanya domain atau alamat IP, tanpa protokol
+                var domain = urlInput.replace(/^https?:\/\//, '');
+
+                // Bersihkan pesan error
+                errorDiv.textContent = "";
+
+                // Set iframe untuk menampilkan hasil check-host.net
+                iframe.src = "https://check-host.net/ip-info?host=" + encodeURIComponent(domain);
+                iframe.style.display = "block";
+            } else {
+                errorDiv.textContent = "Please enter a URL.";
+                iframe.style.display = "none";
+            }
+        }
+        
+        const playButton = document.getElementById('playButton');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        playButton.addEventListener('click', function() {
+            audioPlayer.play(); // Putar audio
+            playButton.style.display = 'none'; // Menghilangkan tombol
+        });
+        
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdown");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+
+        function toggleDropdown() {
+    var dropdown = document.getElementById("dropdown");
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none"; // Tutup jika sudah terbuka
+    } else {
+        dropdown.style.display = "block"; // Buka jika tertutup
+    }
+}
+
+        function showPanel() {
+            document.getElementById("panel-section").style.display = "flex";
+            document.getElementById("vps-section").style.display = "none";
+            document.getElementById("sc-section").style.display = "none";
+            document.getElementById("bug-section").style.display = "none";
+            document.getElementById("log-section").style.display = "none";
+        }
+
+        function showVPS() {
+            document.getElementById("panel-section").style.display = "none";
+            document.getElementById("vps-section").style.display = "flex";
+            document.getElementById("sc-section").style.display = "none";
+            document.getElementById("bug-section").style.display = "none";
+            document.getElementById("log-section").style.display = "none";
+        }
+        
+function showLOG() {
+            document.getElementById("panel-section").style.display = "none";
+            document.getElementById("vps-section").style.display = "none";
+            document.getElementById("sc-section").style.display = "none";
+            document.getElementById("bug-section").style.display = "none";
+            document.getElementById("log-section").style.display = "flex";
+        }
+
+function showSC() {
+            document.getElementById("panel-section").style.display = "none";
+            document.getElementById("vps-section").style.display = "none";
+            document.getElementById("sc-section").style.display = "flex";
+            document.getElementById("bug-section").style.display = "none";
+            document.getElementById("log-section").style.display = "none";
+        }
+
+function showBUG() {
+            document.getElementById("panel-section").style.display = "none";
+            document.getElementById("vps-section").style.display = "none";
+            document.getElementById("sc-section").style.display = "none";
+            document.getElementById("bug-section").style.display = "flex";
+            document.getElementById("log-section").style.display = "none";
+        }
+
+        // Loop permainan
+        let game = setInterval(draw, 100);
+    </script>
+</body>
+</html>
